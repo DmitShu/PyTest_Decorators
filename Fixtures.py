@@ -1,5 +1,6 @@
 import pytest
 import requests
+import sys
 from datetime import datetime
 
 email = "Test19856@Test19856"
@@ -95,12 +96,11 @@ class TestClassPets:
     def test_anotherTest(self):
         pass
 
-# minversion = pytest.mark.skipif(
-#     sys.version_info < (3, 6), reason="at least mymodule-1.1 required"
-# )
-#
-# @minversion
-# def test_python36_and_greater():
+minversion = pytest.mark.skipif(sys.version_info > (3, 6), reason="at least mymodule-1.1 required")
+
+@minversion
+def test_python36_and_greater():
+    pass
 
 @pytest.mark.api
 @pytest.mark.auth
