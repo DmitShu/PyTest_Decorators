@@ -43,7 +43,6 @@ def do_twice(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         func(*args, **kwargs)
-        func(*args, **kwargs)
         return func(*args, **kwargs)
     return wrapper
 
@@ -69,8 +68,8 @@ def test_twice_2(str):
     print("Этот вызов возвращает строку {0}".format(str))
     return "Done"
 
-# decorated_value = test_twice_2("single")
-# print(decorated_value)
+decorated_value = test_twice_2("single")
+print(decorated_value)
 
 @do_twice
 def test_twice(str):
