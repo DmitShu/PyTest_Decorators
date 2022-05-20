@@ -58,6 +58,7 @@ def test_some_data(some_data):
 #     assert response.status_code == 200, 'Запрос выполнен неуспешно'
 #     assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
 
+
 @pytest.fixture(scope="class")
 def get_key(request):
 
