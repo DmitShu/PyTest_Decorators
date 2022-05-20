@@ -25,3 +25,5 @@ class TestClassRequest:
 
     def test_request_2(self, request_fixture):
         print(request_fixture)
+
+def test_name(request): print(request.scope)
