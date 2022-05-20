@@ -78,12 +78,14 @@ def request_fixture(request):
 
 class TestClassPets:
 
+    @pytest.mark.skip(reason="сайт сдох")
     def test_getAllPets2(self, get_key):
         response = requests.get(url='https://petfriends1.herokuapp.com/api/pets',
                                 headers={"Cookie": get_key})
         assert response.status_code == 200, 'Запрос выполнен неуспешно'
         assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
 
+    @pytest.mark.xfail(reason="сайт сдох")
     def test_getMyPets2(self, get_key):
         response = requests.get(url='https://petfriends1.herokuapp.com/my_pets',
                                 headers={"Cookie": get_key})
@@ -92,3 +94,30 @@ class TestClassPets:
 
     def test_anotherTest(self):
         pass
+
+# minversion = pytest.mark.skipif(
+#     sys.version_info < (3, 6), reason="at least mymodule-1.1 required"
+# )
+#
+# @minversion
+# def test_python36_and_greater():
+
+@pytest.mark.api
+@pytest.mark.auth
+def test_auth_api():
+   pass
+
+@pytest.mark.ui
+@pytest.mark.auth
+def test_auth_ui():
+   pass
+
+@pytest.mark.api
+@pytest.mark.event
+def test_event_api():
+   pass
+
+@pytest.mark.ui
+@pytest.mark.event
+def test_event_ui():
+   pass
