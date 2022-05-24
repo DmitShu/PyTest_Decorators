@@ -1,7 +1,4 @@
 import pytest
-import requests
-from datetime import datetime
-
 
 @pytest.fixture()
 def request_fixture(request):
