@@ -121,3 +121,5 @@ def test_event_api():
 @pytest.mark.event
 def test_event_ui():
    pass
+
+# pytest Fixtures.py -v -m "api"
