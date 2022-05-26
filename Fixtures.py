@@ -45,6 +45,7 @@ def some_data():
 def test_some_data(some_data):
     assert some_data == 42
 
+
 # @pytest.fixture()
 # def get_key():
 #     response = requests.post(url='https://petfriends1.herokuapp.com/login',
@@ -79,7 +80,7 @@ def request_fixture(request):
 
 class TestClassPets:
 
-    @pytest.mark.skip(reason="сайт сдох")
+    @pytest.mark.xfail(reason="сайт сдох")
     def test_getAllPets2(self, get_key):
         response = requests.get(url='https://petfriends1.herokuapp.com/api/pets',
                                 headers={"Cookie": get_key})
