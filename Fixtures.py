@@ -63,7 +63,6 @@ def test_some_data(some_data):
 
 @pytest.fixture(scope="class")
 def get_key(request):
-
     response = requests.post(url='https://petfriends1.herokuapp.com/login',
                              data={"email": email, "pass": password})
     assert response.status_code == 200, 'Запрос выполнен неуспешно'
@@ -88,6 +87,7 @@ class TestClassPets:
         assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
 
     @pytest.mark.xfail(reason="сайт сдох")
+    @pytest.mark.event
     def test_getMyPets2(self, get_key):
         response = requests.get(url='https://petfriends1.herokuapp.com/my_pets',
                                 headers={"Cookie": get_key})
