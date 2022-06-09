@@ -63,7 +63,7 @@ def test_some_data(some_data):
 # https://petfriends.skillfactory.ru/apidocs/
 
 @pytest.fixture(scope="class")
-def get_key(request):
+def get_key():
     response = requests.post(url='https://petfriends.skillfactory.ru/login',
                              data={"email": email, "pass": password})
     assert response.status_code == 200, 'Запрос выполнен неуспешно'
@@ -84,6 +84,7 @@ class TestClassPets:
     def test_getAllPets2(self, get_key):
         response = requests.get(url='https://petfriends.skillfactory.ru/api/pets',
                                 headers={"Cookie": get_key})
+
         assert response.status_code == 200, 'Запрос выполнен неуспешно'
         assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
 
