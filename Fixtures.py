@@ -59,11 +59,12 @@ def test_some_data(some_data):
 #                             headers={"Cookie": get_key})
 #     assert response.status_code == 200, 'Запрос выполнен неуспешно'
 #     assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
-
+# https://petfriends.skillfactory.ru/
+# https://petfriends.skillfactory.ru/apidocs/
 
 @pytest.fixture(scope="class")
 def get_key(request):
-    response = requests.post(url='https://petfriends1.herokuapp.com/login',
+    response = requests.post(url='https://petfriends.skillfactory.ru/login',
                              data={"email": email, "pass": password})
     assert response.status_code == 200, 'Запрос выполнен неуспешно'
     assert 'Cookie' in response.request.headers, 'В запросе не передан ключ авторизации'
@@ -79,17 +80,17 @@ def request_fixture(request):
 
 class TestClassPets:
 
-    @pytest.mark.xfail(reason="сайт сдох")
+    # @pytest.mark.xfail(reason="сайт сдох")
     def test_getAllPets2(self, get_key):
-        response = requests.get(url='https://petfriends1.herokuapp.com/api/pets',
+        response = requests.get(url='https://petfriends.skillfactory.ru/api/pets',
                                 headers={"Cookie": get_key})
         assert response.status_code == 200, 'Запрос выполнен неуспешно'
         assert len(response.json().get('pets')) > 0, 'Количество питомцев не соответствует ожиданиям'
 
-    @pytest.mark.xfail(reason="сайт сдох")
+    # @pytest.mark.xfail(reason="сайт сдох")
     @pytest.mark.event
     def test_getMyPets2(self, get_key):
-        response = requests.get(url='https://petfriends1.herokuapp.com/my_pets',
+        response = requests.get(url='https://petfriends.skillfactory.ru/my_pets',
                                 headers={"Cookie": get_key})
         assert response.status_code == 200, 'Запрос выполнен неуспешно'
         assert response.headers.get('Content-Type') == 'text/html; charset=utf-8'
@@ -97,30 +98,31 @@ class TestClassPets:
     def test_anotherTest(self):
         pass
 
-minversion = pytest.mark.skipif(sys.version_info > (3, 6), reason="at least mymodule-1.1 required")
 
-@minversion
-def test_python36_and_greater():
-    pass
-
-@pytest.mark.api
-@pytest.mark.auth
-def test_auth_api():
-   pass
-
-@pytest.mark.ui
-@pytest.mark.auth
-def test_auth_ui():
-   pass
-
-@pytest.mark.api
-@pytest.mark.event
-def test_event_api():
-   pass
-
-@pytest.mark.ui
-@pytest.mark.event
-def test_event_ui():
-   pass
+# minversion = pytest.mark.skipif(sys.version_info > (3, 6), reason="at least mymodule-1.1 required")
+#
+# @minversion
+# def test_python36_and_greater():
+#     pass
+#
+# @pytest.mark.api
+# @pytest.mark.auth
+# def test_auth_api():
+#    pass
+#
+# @pytest.mark.ui
+# @pytest.mark.auth
+# def test_auth_ui():
+#    pass
+#
+# @pytest.mark.api
+# @pytest.mark.event
+# def test_event_api():
+#    pass
+#
+# @pytest.mark.ui
+# @pytest.mark.event
+# def test_event_ui():
+#    pass
 
 # pytest Fixtures.py -v -m "api"
