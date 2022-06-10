@@ -2,9 +2,7 @@ import pytest
 import requests
 import sys
 from datetime import datetime
-
-email = "Test19856@Test19856"
-password = "Test19856"
+from logins import *
 
 # function — запускается для каждого теста по умолчанию любая фикстура имеет scope=«function»;
 # class — запускается для каждого тестового класса;
